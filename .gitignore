@@ -1,0 +1,12 @@
+.idea/
+target/
+out/
+
+*.iml
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Local API jars
+libs/
