@@ -4,6 +4,15 @@ A Skript addon that exposes the TrainCarts API to Skript.
 
 Create custom TrainCarts trigger signs, launch trains, control ride behavior, and build fully scripted attractions without writing Java.
 
+| Feature                  | Supported |
+| ------------------------ | :-------: |
+| Custom TrainCarts Events |     ✅     |
+| Train Expressions        |     ✅     |
+| Passenger Expressions    |     ✅     |
+| Launch Effects           |     ✅     |
+| Redstone Support         |     ✅     |
+| Launch Units             |     ✅     |
+
 ---
 
 ## Features
