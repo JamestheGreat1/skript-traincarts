@@ -1,12 +1,16 @@
+# IntelliJ
 .idea/
+*.iml
+
+# Maven
 target/
+
+# Build output
 out/
 
-*.iml
+# Local dependencies
+libs/
 
 # OS files
 .DS_Store
 Thumbs.db
-
-# Local API jars
-libs/
