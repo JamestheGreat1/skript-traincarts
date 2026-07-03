@@ -1,0 +1,17 @@
+name: skript-traincarts
+version: ${project.version}
+main: com.james.skripttraincarts.SkriptTrainCarts
+api-version: "1.21"
+
+author: James_theGreat1
+description: A Skript addon that exposes the TrainCarts API to Skript.
+website: https://github.com/James-theGreat1/skript-traincarts
+
+depend:
+  - Skript
+  - Train_Carts
+
+permissions:
+  train.build.skript:
+    description: Allows players to build TrainCarts Skript trigger signs.
+    default: op

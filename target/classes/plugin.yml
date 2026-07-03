@@ -1,0 +1,13 @@
+name: skript-traincarts
+version: 1.0.0-release
+main: com.james.skripttraincarts.SkriptTrainCarts
+api-version: '1.21'
+author: James_theGreat1
+description: Skript bridge addon for TrainCarts signs.
+depend:
+  - Skript
+  - Train_Carts
+permissions:
+  train.build.skript:
+    description: Allows building skript trigger TrainCarts signs.
+    default: op
