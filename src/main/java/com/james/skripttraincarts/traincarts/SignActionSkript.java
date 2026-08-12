@@ -5,6 +5,7 @@ import com.bergerkiller.bukkit.tc.events.SignChangeActionEvent;
 import com.bergerkiller.bukkit.tc.signactions.SignAction;
 import com.bergerkiller.bukkit.tc.signactions.SignActionType;
 import com.bergerkiller.bukkit.tc.utils.SignBuildOptions;
+import com.bergerkiller.bukkit.tc.controller.MinecartGroup;
 import com.james.skripttraincarts.bukkit.TrainSignTriggerEvent;
 import org.bukkit.Bukkit;
 
@@ -16,6 +17,11 @@ public class SignActionSkript extends SignAction {
     }
 
     @Override
+    public boolean canSupportRC() {
+        return true;
+    }
+
+    @Override
     public void execute(SignActionEvent info) {
         if (!verify(info)) {
             return;
@@ -23,13 +29,14 @@ public class SignActionSkript extends SignAction {
 
         boolean trainSign = info.isTrainSign();
         boolean cartSign = info.isCartSign();
+        boolean remoteSign = info.isRCSign();
 
-        if (!trainSign && !cartSign) {
+        if (!trainSign && !cartSign && !remoteSign) {
             return;
         }
 
         boolean validAction =
-                (trainSign && info.isAction(
+                ((trainSign || remoteSign) && info.isAction(
                         SignActionType.GROUP_ENTER,
                         SignActionType.REDSTONE_ON,
                         SignActionType.REDSTONE_OFF
@@ -60,6 +67,22 @@ public class SignActionSkript extends SignAction {
         String trigger = info.getLine(2);
         if (trigger == null || trigger.isBlank()) {
             trigger = "default";
+        }
+
+        if (remoteSign) {
+            for (MinecartGroup group : info.getRCTrainGroups()) {
+                if (group == null || group.isEmpty()) {
+                    continue;
+                }
+
+                info.setGroup(group);
+
+                Bukkit.getPluginManager().callEvent(
+                        new TrainSignTriggerEvent(info, trigger, true, false)
+                );
+            }
+
+            return;
         }
 
         Bukkit.getPluginManager().callEvent(

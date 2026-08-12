@@ -5,7 +5,7 @@
 
     <groupId>com.james</groupId>
     <artifactId>skript-traincarts</artifactId>
-    <version>1.0.0-release</version>
+    <version>1.1.0</version>
     <packaging>jar</packaging>
 
     <name>skript-traincarts</name>

@@ -4,15 +4,20 @@ import ch.njol.skript.Skript;
 import ch.njol.skript.SkriptAddon;
 import com.bergerkiller.bukkit.tc.signactions.SignAction;
 import com.james.skripttraincarts.traincarts.SignActionSkript;
+import com.james.skripttraincarts.update.UpdateChecker;
+import com.james.skripttraincarts.update.UpdateNotificationListener;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.IOException;
 
 public final class SkriptTrainCarts extends JavaPlugin {
+
     private static SkriptTrainCarts instance;
+
     private SkriptAddon addon;
     private SignActionSkript signAction;
+    private UpdateChecker updateChecker;
 
     @Override
     public void onEnable() {
@@ -29,11 +34,22 @@ public final class SkriptTrainCarts extends JavaPlugin {
 
         signAction = SignAction.register(new SignActionSkript());
 
+        updateChecker = new UpdateChecker(this);
+        updateChecker.checkForUpdates();
+
+        getServer().getPluginManager().registerEvents(
+                new UpdateNotificationListener(this),
+                this
+        );
+
         Bukkit.getConsoleSender().sendMessage(
                 "§f[§bskript-§atraincarts§f] §f- made by James_theGreat1 -"
         );
+
         Bukkit.getConsoleSender().sendMessage(
-                "§f[§bskript-§atraincarts§f] §aEnabled §7(v" + getDescription().getVersion() + ")"
+                "§f[§bskript-§atraincarts§f] §aEnabled §7(v"
+                        + getDescription().getVersion()
+                        + ")"
         );
     }
 
@@ -49,5 +65,9 @@ public final class SkriptTrainCarts extends JavaPlugin {
 
     public static SkriptTrainCarts getInstance() {
         return instance;
+    }
+
+    public UpdateChecker getUpdateChecker() {
+        return updateChecker;
     }
 }
