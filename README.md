@@ -40,6 +40,10 @@ Create custom TrainCarts trigger signs, launch trains, control ride behavior, an
 
 ---
 
+[![SkriptHubViewTheDocs](http://skripthub.net/static/addon/ViewTheDocsButton.png)](http://skripthub.net/docs/?addon=skript-traincarts)
+
+---
+
 # Creating a Skript Trigger Sign
 
 ```
